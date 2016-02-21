@@ -1,0 +1,63 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:http="http://cxf.apache.org/transports/http/configuration"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" 
+	xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:httpj="http://cxf.apache.org/transports/http-jetty/configuration"
+    xmlns:sec="http://cxf.apache.org/configuration/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd         
+	   http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd  
+	   http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd	
+	   http://cxf.apache.org/configuration/security http://cxf.apache.org/schemas/configuration/security.xsd
+	   http://cxf.apache.org/transports/http-jetty/configuration http://cxf.apache.org/schemas/configuration/http-jetty.xsd">	
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+
+    <cxf:bus>
+        <cxf:features>
+            <cxf:logging/>
+        </cxf:features>
+    </cxf:bus>
+
+	<bean id="bookStore" class="demo.jaxrs.saml.server.BookStoreImpl" />
+
+	<bean id="samlValidator"
+		class="org.apache.cxf.rs.security.saml.SamlHeaderInHandler">
+		<property name="validator">
+			<bean class="org.apache.cxf.ws.security.trust.STSTokenValidator">
+				<constructor-arg value="false" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider" />
+    
+	<jaxrs:server id="bookStoreServer" address="https://localhost:9000/">
+		<jaxrs:serviceBeans>
+			<ref bean="bookStore" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<ref bean="samlValidator" />
+			<ref bean="jsonProvider" />
+		</jaxrs:providers>
+		<jaxrs:properties>
+			<entry key="ws-security.callback-handler" value="demo.jaxrs.saml.client.ClientCallbackHandler" />
+			<entry key="ws-security.signature.properties" value="clientKeystore.properties" />
+		</jaxrs:properties>
+	</jaxrs:server>
+
+    <httpj:engine-factory bus="cxf">
+        <httpj:engine port="9000">
+            <httpj:tlsServerParameters>
+                <sec:keyManagers keyPassword="skpass">
+                    <sec:keyStore file="src/main/resources/servicestore.jks" password="sspass" type="JKS"/>
+                </sec:keyManagers>
+                <sec:trustManagers>
+                    <sec:keyStore file="src/main/resources/servicestore.jks" password="sspass" type="JKS"/>
+                </sec:trustManagers>
+                <sec:clientAuthentication required="true"/>
+            </httpj:tlsServerParameters>
+        </httpj:engine>
+    </httpj:engine-factory>
+
+</beans>
+
