@@ -3,31 +3,35 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.gmazza.blog-samples.cxf-sts-tutorial</groupId>
-        <artifactId>cxf-sts-tutorial</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-    <artifactId>cxf-sts-tutorial-stswar</artifactId>
-    <name>${stswar.module.name}</name>
+    <artifactId>sts</artifactId>
     <packaging>war</packaging>
+
+    <parent>          
+        <groupId>cxf.tutorials.jaxrs.security.saml</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.cxf.services.sts</groupId>
             <artifactId>cxf-services-sts-core</artifactId>
+            <version>${cxf.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-ws-mex</artifactId>
+            <version>${cxf.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-jdk14</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
         </dependency>
     </dependencies>
 

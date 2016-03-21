@@ -31,7 +31,7 @@ http://www.springframework.org/schema/util/spring-util-2.0.xsd">
     </bean>
     
     <util:list id="x509Endpoints">
-        <value>http://localhost:8080/doubleit/services/doubleit.*</value>
+        <value>http://localhost:*</value>
         <value>.*</value>
     </util:list>
 
@@ -48,7 +48,7 @@ http://www.springframework.org/schema/util/spring-util-2.0.xsd">
 
     <!-- Username Token -->
     <jaxws:endpoint id="utSTS" implementor="#stsProvider"
-        address="/STS/UT" wsdlLocation="wsdl/ws-trust-1.4-service.wsdl"
+        address="/STS/UT" wsdlLocation="WEB-INF/wsdl/ws-trust-1.4-service.wsdl"
         xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512/"
         serviceName="wst:SecurityTokenService" endpointName="wst:UT_Port">
         <jaxws:properties>
@@ -58,7 +58,7 @@ http://www.springframework.org/schema/util/spring-util-2.0.xsd">
 
     <!-- X509 -->
     <jaxws:endpoint id="x509STS" implementor="#stsProvider"
-        address="/STS/X509" wsdlLocation="/WEB-INF/wsdl/ws-trust-1.4-service.wsdl"
+        address="/STS/X509" wsdlLocation="WEB-INF/wsdl/ws-trust-1.4-service.wsdl"
         xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512/"
         serviceName="wst:SecurityTokenService" endpointName="wst:X509_Port">
         <jaxws:properties>
