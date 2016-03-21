@@ -31,7 +31,6 @@ http://www.springframework.org/schema/util/spring-util-2.0.xsd">
     </bean>
     
     <util:list id="x509Endpoints">
-        <value>http://localhost:*</value>
         <value>.*</value>
     </util:list>
 
@@ -44,16 +43,11 @@ http://www.springframework.org/schema/util/spring-util-2.0.xsd">
         <property name="encryptionUsername" value="myservicekey"/>
     </bean>
 
-    <bean id="validator" class="sts.SimpleValidator"/>
-
     <!-- Username Token -->
     <jaxws:endpoint id="utSTS" implementor="#stsProvider"
         address="/STS/UT" wsdlLocation="WEB-INF/wsdl/ws-trust-1.4-service.wsdl"
         xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512/"
         serviceName="wst:SecurityTokenService" endpointName="wst:UT_Port">
-        <jaxws:properties>
-            <entry key="ws-security.ut.validator" value-ref="validator" />
-        </jaxws:properties>
     </jaxws:endpoint>
 
     <!-- X509 -->
