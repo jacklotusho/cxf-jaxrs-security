@@ -23,9 +23,7 @@
 	<bean id="samlValidator"
 		class="org.apache.cxf.rs.security.saml.SamlHeaderInHandler">
 		<property name="validator">
-			<bean class="org.apache.cxf.ws.security.trust.STSTokenValidator">
-				<constructor-arg value="false" />
-			</bean>
+			<bean class="org.apache.cxf.ws.security.trust.STSTokenValidator"/>
 		</property>
 	</bean>
 
@@ -40,8 +38,7 @@
 			<ref bean="jsonProvider" />
 		</jaxrs:providers>
 		<jaxrs:properties>
-			<entry key="ws-security.callback-handler" value="demo.jaxrs.saml.client.ClientCallbackHandler" />
-			<entry key="ws-security.signature.properties" value="clientKeystore.properties" />
+			<entry key="ws-security.signature.properties" value="serviceKeystore.properties" />
 		</jaxrs:properties>
 	</jaxrs:server>
 
