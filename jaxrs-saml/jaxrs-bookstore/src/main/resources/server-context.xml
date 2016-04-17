@@ -23,7 +23,7 @@
 	<bean id="samlValidator"
 		class="org.apache.cxf.rs.security.saml.SamlHeaderInHandler">
 		<property name="validator">
-			<bean class="org.apache.cxf.ws.security.trust.STSTokenValidator"/>
+			<bean class="org.apache.wss4j.dom.validate.SamlAssertionValidator"/>
 		</property>
 	</bean>
 
