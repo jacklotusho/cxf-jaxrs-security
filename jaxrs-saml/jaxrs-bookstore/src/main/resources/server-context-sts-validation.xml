@@ -20,10 +20,30 @@
 
 	<bean id="bookStore" class="demo.jaxrs.saml.server.BookStoreImpl" />
 
+	<bean id="stsClient" class="org.apache.cxf.ws.security.trust.STSClient">
+		<constructor-arg ref="cxf" />
+		<property name="wsdlLocation" value="http://localhost:8080/sts/STS/X509?wsdl" />
+		<property name="serviceName"
+			value="{http://docs.oasis-open.org/ws-sx/ws-trust/200512/}SecurityTokenService" />
+		<property name="endpointName"
+			value="{http://docs.oasis-open.org/ws-sx/ws-trust/200512/}X509_Port" />
+		<property name="properties">
+			<map>
+				<entry key="ws-security.callback-handler" value="demo.jaxrs.saml.server.ServiceCallbackHandler" />
+				<entry key="ws-security.sts.token.username" value="myservicekey" />
+				<entry key="security.signature.properties" value="serviceKeystore.properties" />				
+				<entry key="ws-security.sts.token.properties" value="serviceKeystore.properties" />
+			</map>
+		</property>
+	</bean>
+
 	<bean id="samlValidator"
 		class="org.apache.cxf.rs.security.saml.SamlHeaderInHandler">
 		<property name="validator">
-			<bean class="org.apache.wss4j.dom.validate.SamlAssertionValidator"/>
+			<bean class="org.apache.cxf.ws.security.trust.STSTokenValidator">
+                 <constructor-arg value="true" />
+                 <property name="stsClient" ref="stsClient"/>
+			</bean>
 		</property>
 	</bean>
 
