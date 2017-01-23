@@ -17,4 +17,5 @@ target
 derby.log
 
 # IntelliJ IDEA
-*.i??
+.idea
+*.iml
