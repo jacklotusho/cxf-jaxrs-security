@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="sts:war">
+    <output-path>$PROJECT_DIR$/jaxrs-saml/sts/target</output-path>
+    <root id="archive" name="sts.war">
+      <element id="artifact" artifact-name="sts:war exploded" />
+    </root>
+  </artifact>
+</component>
