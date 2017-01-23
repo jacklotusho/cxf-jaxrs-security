@@ -29,7 +29,7 @@
 		class="org.apache.cxf.ws.security.policy.interceptors.STSTokenOutInterceptor$AuthParams">
 		<constructor-arg name="authMode" value="X509" />
 		<constructor-arg name="userName" value="alice" />
-		<constructor-arg name="alias" value="myclientkey" />
+		<constructor-arg name="alias" value="client" />
 		<constructor-arg name="callbackHandler" value="demo.jaxrs.saml.client.ClientCallbackHandler" />
 		<constructor-arg name="keystoreProperties" value="clientKeystore.properties" />
 	</bean>
@@ -53,16 +53,15 @@
 	<http:conduit name="https://localhost:9000.*">
 		<http:client ConnectionTimeout="3000000" ReceiveTimeout="3000000" />
 		<http:tlsClientParameters>
-			<sec:keyManagers keyPassword="ckpass">
-				<sec:keyStore file="src/main/resources/clientstore.jks"
-					password="cspass" type="JKS" />
+			<sec:keyManagers keyPassword="clientkeypass">
+				<sec:keyStore file="src/main/resources/client.jks"
+					password="clientstorepass" type="JKS" />
 			</sec:keyManagers>
 			<sec:trustManagers>
-				<sec:keyStore file="src/main/resources/clientstore.jks"
-					password="cspass" type="JKS" />
+				<sec:keyStore file="src/main/resources/client.jks"
+					password="clientstorepass" type="JKS" />
 			</sec:trustManagers>
 		</http:tlsClientParameters>
 	</http:conduit>
 
 </beans>
-

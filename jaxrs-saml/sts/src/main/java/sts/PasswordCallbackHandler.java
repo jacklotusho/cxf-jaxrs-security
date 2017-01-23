@@ -10,9 +10,7 @@ import org.apache.wss4j.common.ext.WSPasswordCallback;
 
 public class PasswordCallbackHandler implements CallbackHandler
 {
-
-	public void handle(Callback[] callbacks) throws IOException,
-			UnsupportedCallbackException
+	public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException
 	{
 		for (int i = 0; i < callbacks.length; i++)
 		{
@@ -26,6 +24,10 @@ public class PasswordCallbackHandler implements CallbackHandler
 					{
 						pc.setPassword("stskpass");
 					}
+					if ("sts".equals(pc.getIdentifier()))
+					{
+						pc.setPassword("stskeypass");
+					}
 				}
 				else if (pc.getUsage() == WSPasswordCallback.USERNAME_TOKEN)
 				{
@@ -38,4 +40,3 @@ public class PasswordCallbackHandler implements CallbackHandler
 		}
 	}
 }
-

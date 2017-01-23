@@ -66,6 +66,10 @@
                         <server>myTomcat</server>
                         <url>http://localhost:8080/manager/text</url>
                         <path>/${project.build.finalName}</path>
+                        <httpsPort>8443</httpsPort>
+                        <keystoreFile>${basedir}/src/main/resources/localhost.jks</keystoreFile>
+                        <aliases>localhost (certificate authorization root)</aliases>
+                        <keystorePass>Passw0rd</keystorePass>
                     </configuration>
                 </plugin>
                 <!-- Below for WAR submodules, defaults for when creating the WAR file. --> 
