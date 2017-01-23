@@ -68,7 +68,7 @@
                         <path>/${project.build.finalName}</path>
                         <httpsPort>8443</httpsPort>
                         <keystoreFile>${basedir}/src/main/resources/localhost.jks</keystoreFile>
-                        <aliases>localhost (certificate authorization root)</aliases>
+                        <aliases>localhost</aliases>
                         <keystorePass>Passw0rd</keystorePass>
                     </configuration>
                 </plugin>

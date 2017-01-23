@@ -21,7 +21,7 @@
 		class="org.apache.cxf.ws.security.policy.interceptors.STSTokenOutInterceptor">
 		<constructor-arg name="authParams" ref="authParams" />
 		<constructor-arg name="stsWsdlLocation"
-			value="http://localhost:8080/sts/STS/X509?wsdl" />
+			value="https://localhost:8443/sts/STS/X509?wsdl" />
 		<constructor-arg name="bus" ref="cxf" />
 	</bean>
 

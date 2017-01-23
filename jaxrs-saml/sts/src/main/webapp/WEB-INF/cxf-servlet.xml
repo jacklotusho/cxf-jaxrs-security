@@ -39,7 +39,7 @@ http://www.springframework.org/schema/util/spring-util-2.0.xsd">
         <property name="signatureUsername" value="sts" />
         <property name="callbackHandlerClass" value="sts.PasswordCallbackHandler" />
         <property name="encryptionPropertiesFile" value="stsKeystore.properties" />
-        <property name="issuer" value="DoubleItSTSIssuer" />
+        <property name="issuer" value="Uknow2STSIssuer" />
         <property name="encryptionUsername" value="service"/>
     </bean>
 

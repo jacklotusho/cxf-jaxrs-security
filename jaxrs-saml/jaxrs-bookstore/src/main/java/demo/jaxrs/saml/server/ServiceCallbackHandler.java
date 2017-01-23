@@ -21,10 +21,6 @@ public class ServiceCallbackHandler implements CallbackHandler
 						pc.getUsage() == WSPasswordCallback.SIGNATURE)
 				{
 					// typically X.509 auth only
-					if ("myservicekey".equals(pc.getIdentifier()))
-					{
-						pc.setPassword("password");
-					}
 					if ("service".equals(pc.getIdentifier()))
 					{
 						pc.setPassword("servicekeypass");

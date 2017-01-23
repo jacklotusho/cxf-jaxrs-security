@@ -20,10 +20,6 @@ public class PasswordCallbackHandler implements CallbackHandler
 				if (pc.getUsage() == WSPasswordCallback.DECRYPT ||
 						pc.getUsage() == WSPasswordCallback.SIGNATURE)
 				{
-					if ("mystskey".equals(pc.getIdentifier()))
-					{
-						pc.setPassword("stskpass");
-					}
 					if ("sts".equals(pc.getIdentifier()))
 					{
 						pc.setPassword("stskeypass");

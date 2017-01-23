@@ -21,10 +21,6 @@ public class ClientCallbackHandler implements CallbackHandler
 						pc.getUsage() == WSPasswordCallback.SIGNATURE)
 				{
 					// typically X.509 auth only
-					if ("myclientkey".equals(pc.getIdentifier()))
-					{
-						pc.setPassword("ckpass");
-					}
 					if ("client".equals(pc.getIdentifier()))
 					{
 						pc.setPassword("clientkeypass");
